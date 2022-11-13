@@ -6,11 +6,11 @@ Simple application that converts regular images to ASCII characters art.
 
 Algorithm used to do this trick is as following. Firstly, we load image as it is.
 
-![Regular image](kscerato.jpeg)
+![Regular image](assets/images/kscerato.jpeg)
 
 After that it is being converted to grayscaled version.
 
-![Grayscale image](kscerato_grayscale.jpeg)
+![Grayscale image](assets/images/kscerato_grayscale.jpeg)
 
 Next, we traverse through all pixels and check their values.
 Possible values are 0 - 255. Previously we have defined our array of symbols.
@@ -25,7 +25,7 @@ Since there is 9 elements in the array and maximum value is 255, step for mappin
 
 Lastly, when we have all values for possible pixels, we have to display on the screen.
 
-![Pixel image](kscerato_ascii.png)
+![Pixel image](assets/images/kscerato_ascii.png)
 
 In the settings.py file we have configuratioon for symbols and pixel size. Symbols is array that are being used for elements presenting on the screen. Pixel size is used to determine distance between two successive elements.
 
@@ -33,4 +33,4 @@ Changing those parameters you can tweak this generator.
 
 Also, there is possibility to display art in non-grayscale version. When asked if you want image to be grayscaled, just select N (No) and image will look like this:
 
-![Colored image](kscerato_colored.jpeg)
+![Colored image](assets/images/kscerato_colored.jpeg)
