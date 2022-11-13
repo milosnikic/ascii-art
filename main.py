@@ -85,12 +85,17 @@ if __name__ == "__main__":
     # Enter image path
     image_path = input("Enter image path: ")
     grayscale = input("Grayscale (y/N): ")
+    resize = input("Resize image (y/N): ")
+    pixels = input("Number of pixels(default 8): ")
+    if pixels:
+        PIXEL_SIZE = int(pixels)
 
     # Import image
     image_extension = image_path.split(".")[1]
     image_name = image_path.split(".")[0]
     im_original = Image.open(f"{image_name}.{image_extension}")
-    # im_original.thumbnail((1280, 960), Image.ANTIALIAS)
+    if resize.lower() == "y":
+        im_original.thumbnail((1280, 960), Image.ANTIALIAS)
     im = im_original.convert("L")
     WIDTH, HEIGHT = im.size
     im.save(f"{image_name}_grayscale.{image_extension}")
