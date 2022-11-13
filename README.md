@@ -30,3 +30,7 @@ Lastly, when we have all values for possible pixels, we have to display on the s
 In the settings.py file we have configuratioon for symbols and pixel size. Symbols is array that are being used for elements presenting on the screen. Pixel size is used to determine distance between two successive elements.
 
 Changing those parameters you can tweak this generator.
+
+Also, there is possibility to display art in non-grayscale version. When asked if you want image to be grayscaled, just select N (No) and image will look like this:
+
+![Colored image](kscerato_colored.jpeg)
