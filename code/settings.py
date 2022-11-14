@@ -13,8 +13,18 @@ class Settings:
         self.resize = False
         self.pixels = PIXEL_SIZE
         self.font = FONT_SIZE
+        self.static = True
 
     def get_input(self):
+        static_image = input(
+            "Do you want static image or live preview from webcam? (s/w): "
+        )
+        if static_image.lower() != "s":
+            self.static = False
+
+        self.get_image_settings()
+
+    def get_image_settings(self):
         image_path = input("Enter image path: ")
         if image_path:
             self.image_path = image_path

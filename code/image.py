@@ -5,23 +5,26 @@ from settings import *
 
 
 class Image:
-    def __init__(self, settings, image_name=None, image_array=None) -> None:
+    def __init__(self, settings, image_name=None) -> None:
         self.settings = settings
         if image_name:
             image_extension = image_name.split(".")[1]
             image_name = image_name.split(".")[0]
-            self.original_image = PImage.open(
-                Path(f"../ascii-art/assets/images/{image_name}.{image_extension}")
+            self.set_image(
+                PImage.open(
+                    Path(f"../ascii-art/assets/images/{image_name}.{image_extension}")
+                )
             )
 
-            if self.settings.resize:
-                self.original_image.thumbnail((1280, 960), Image.ANTIALIAS)
+    def set_image(self, image):
+        self.original_image = image
 
-            self.width, self.height = self.original_image.size
-            self.image = self.original_image.convert("L")
+        if self.settings.resize:
+            self.original_image.thumbnail((1280, 960), Image.ANTIALIAS)
 
+        self.width, self.height = self.original_image.size
+        self.image = self.original_image.convert("L")
         self.symbol_image = self.get_symbol_image()
-        self.image_array = image_array
 
     def map_to_symbol(self, value):
         """Method used to map individual pixel value to symbol.
@@ -53,10 +56,7 @@ class Image:
         for row in range(self.width):
             row_pixels = []
             for col in range(self.height):
-                if hasattr(self, "image_array"):
-                    symbol = self.map_to_symbol(self.image_array[row][col])
-                else:
-                    symbol = self.map_to_symbol(self.image.getpixel((row, col)))
+                symbol = self.map_to_symbol(self.image.getpixel((row, col)))
                 if self.settings.grayscale:
                     row_pixels.append(symbol)
                 else:
@@ -70,8 +70,10 @@ class Image:
         on desired position.
 
         Args:
-            symbol_image (_type_): Symbol representation of image
+            screen (Surface): Screen where image is going to be displayed
+            font (Font): Font used for displaying image
         """
+
         for col in range(0, self.height, self.settings.pixels):
             for row in range(0, self.width, self.settings.pixels):
                 if self.settings.grayscale:
