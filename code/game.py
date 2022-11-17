@@ -23,6 +23,9 @@ class Game:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_p:
+                        self.image.save(self.screen)
 
             if self.image:
                 self.image.draw(self.screen, self.font)

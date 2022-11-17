@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import pygame
 from PIL import Image as PImage
 from settings import *
 
@@ -8,11 +9,13 @@ class Image:
     def __init__(self, settings, image_name=None) -> None:
         self.settings = settings
         if image_name:
-            image_extension = image_name.split(".")[1]
-            image_name = image_name.split(".")[0]
+            self.image_extension = image_name.split(".")[1]
+            self.image_name = image_name.split(".")[0]
             self.set_image(
                 PImage.open(
-                    Path(f"../ascii-art/assets/images/{image_name}.{image_extension}")
+                    Path(
+                        f"../ascii-art/assets/images/{self.image_name}.{self.image_extension}"
+                    )
                 )
             )
 
@@ -85,3 +88,18 @@ class Image:
                 font_surf = font.render(character, True, color)
                 font_rect = font_surf.get_rect(topleft=(row, col))
                 screen.blit(font_surf, font_rect)
+
+    def save(self, screen):
+        """Method used to save surface as an image
+
+        Args:
+            screen (_type_): Main surface of pygame window
+        """
+        path = (
+            f"../ascii-art/assets/images/{self.image_name}_ascii.{self.image_extension}"
+        )
+        pygame.image.save(
+            screen,
+            path,
+        )
+        print(f"ASCII Image has been saved as image at following path: {path}")

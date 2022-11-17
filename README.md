@@ -34,3 +34,5 @@ Changing those parameters you can tweak this generator.
 Also, there is possibility to display art in non-grayscale version. When asked if you want image to be grayscaled, just select N (No) and image will look like this:
 
 ![Colored image](assets/images/kscerato_colored.jpeg)
+
+Furthermore, you can capture window surface and save ASCII art as image by pressing P. As it is just added as new functionality, it can be spammed as many times as you want, there is no restriction on that part.
