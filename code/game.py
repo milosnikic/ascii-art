@@ -7,7 +7,7 @@ from settings import APP_NAME
 
 class Game:
     def __init__(self, settings) -> None:
-        self.image = Image(settings, "kscerato.jpeg")
+        self.image = Image(settings)
 
         # Initial configuration
         pygame.init()

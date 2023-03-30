@@ -6,18 +6,18 @@ from settings import *
 
 
 class Image:
-    def __init__(self, settings, image_name=None) -> None:
+    def __init__(self, settings: Settings) -> None:
         self.settings = settings
-        if image_name:
-            self.image_extension = image_name.split(".")[1]
-            self.image_name = image_name.split(".")[0]
-            self.set_image(
-                PImage.open(
-                    Path(
-                        f"../ascii-art/assets/images/{self.image_name}.{self.image_extension}"
-                    )
+
+        self.image_extension = self.settings.image_path.split(".")[1]
+        self.image_name = self.settings.image_path.split(".")[0]
+        self.set_image(
+            PImage.open(
+                Path(
+                    f"../ascii-art/assets/images/{self.image_name}.{self.image_extension}"
                 )
             )
+        )
 
     def set_image(self, image):
         self.original_image = image

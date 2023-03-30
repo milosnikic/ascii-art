@@ -8,7 +8,7 @@ SYMBOLS = [".", "_", "^", "!", "*", "&", "$", "%", "@"]
 
 class Settings:
     def __init__(self) -> None:
-        self.image_name = "kscerato.jpeg"
+        self.image_path = None
         self.grayscale = True
         self.resize = False
         self.pixels = PIXEL_SIZE
@@ -26,8 +26,9 @@ class Settings:
 
     def get_image_settings(self):
         image_path = input("Enter image path: ")
-        if image_path:
-            self.image_path = image_path
+        if not image_path:
+            raise Exception("You have to provide path")
+        self.image_path = image_path
 
         grayscale = input("Grayscale (y/N): ")
         if grayscale and grayscale != "":
